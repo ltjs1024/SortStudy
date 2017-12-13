@@ -23,20 +23,23 @@ import java.util.Arrays;
  */
 public class InsertSort {
 
-    public static void sort(int[] arr) {
+    public static void sort(int[] data) {
         System.out.println("开始排序");
-        for (int i = 1; i < arr.length; i++) {
-            int temp = arr[i];
-
-            if (arr[i] < arr[i - 1]) {
+        for (int i = 1; i < data.length; i++) {
+            // 当整体后移时，保证data[i]的值不会丢失
+            int temp = data[i];
+            // i索引处的值已经比前面的所有值都大时，表明已经有序，无需插入
+            // i-1索引之前的数据已经是有序的，i-1索引处元素的值就是最大值
+            if (data[i] < data[i - 1]) {
                 int j = i - 1;
-                // 数据
-                for (; j >= 0 && arr[j] > temp; j--) {
-                    arr[j + 1] = arr[j];
+                // 整体后移一格
+                for (; j >= 0 && data[j] > temp; j--) {
+                    data[j + 1] = data[j];
                 }
-                arr[j + 1] = temp;
+                // 最后将temp的值插入合适位置
+                data[j + 1] = temp;
             }
-            System.out.println(Arrays.toString(arr));
+            System.out.println(Arrays.toString(data));
         }
 
 
